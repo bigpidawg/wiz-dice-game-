@@ -6,14 +6,24 @@
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <style>
-      body { background: #121212; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; color: white; font-family: system-ui; }
-      .dice { font-size: 100px; transition: transform 0.2s; }
+      body { background: #121212; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; color: white; font-family: system-ui; }
+      .dice { font-size: 150px; transition: transform 0.2s; }
       .rolling { animation: shake 0.1s infinite; }
       @keyframes shake { 0% { transform: rotate(5deg); } 50% { transform: rotate(-5deg); } 100% { transform: rotate(5deg); } }
-      button { padding: 15px 30px; font-size: 18px; background: #ffd700; border: none; border-radius: 10px; cursor: pointer; font-weight: bold; color: black; }
+      button { padding: 20px 40px; font-size: 24px; background: #ffd700; border: none; border-radius: 15px; cursor: pointer; font-weight: bold; color: black; width: 100%; }
       button:disabled { background: #555; }
-      .reset-btn { background: #444; color: white; margin-left: 10px; }
-      .score-box { padding: 10px 20px; background: #333; borderRadius: 10px; }
+      .reset-btn { background: #444; color: white; margin-top: 15px; }
+      .score-box { padding: 15px 30px; background: #333; borderRadius: 10px; flex: 1; }
+      .container { 
+        textAlign: center; 
+        padding: 40px; 
+        background: #1a1a1a; 
+        borderRadius: 20px; 
+        border: 2px solid #ffd700; 
+        width: 90%; 
+        max-width: 600px;
+        box-sizing: border-box;
+      }
     </style>
   </head>
   <body>
@@ -51,19 +61,21 @@
         };
 
         return (
-          <div style={{ textAlign: 'center', padding: '40px', background: '#1a1a1a', borderRadius: '20px', border: '2px solid #ffd700' }}>
-            <h1 style={{ color: '#ffd700', margin: '0' }}>🎲 Wiz Dice Pro</h1>
-            <div style={{ display: 'flex', justifyContent: 'center', gap: '40px', margin: '20px 0', fontSize: '20px' }}>
-              <div className="score-box">You: <span style={{ color: '#ffd700' }}>{pScore}</span></div>
-              <div className="score-box">Wiz: <span style={{ color: '#ffd700' }}>{wScore}</span></div>
+          <div className="container">
+            <h1 style={{ color: '#ffd700', margin: '0', fontSize: '40px' }}>🎲 Wiz Dice Pro</h1>
+            <div style={{ display: 'flex', justifyContent: 'center', gap: '20px', margin: '30px 0', fontSize: '24px' }}>
+              <div className="score-box">You: <br/><span style={{ color: '#ffd700', fontSize: '32px' }}>{pScore}</span></div>
+              <div className="score-box">Wiz: <br/><span style={{ color: '#ffd700', fontSize: '32px' }}>{wScore}</span></div>
             </div>
-            <div style={{ display: 'flex', gap: '40px', margin: '30px 0' }}>
-              <div><p>Player</p><div className={rolling ? 'dice rolling' : 'dice'}>{faces[pVal]}</div></div>
-              <div><p>The Wiz</p><div className={rolling ? 'dice rolling' : 'dice'}>{faces[wVal]}</div></div>
+            <div style={{ display: 'flex', gap: '20px', margin: '40px 0', justifyContent: 'space-around' }}>
+              <div><p style={{fontSize: '20px'}}>Player</p><div className={rolling ? 'dice rolling' : 'dice'}>{faces[pVal]}</div></div>
+              <div><p style={{fontSize: '20px'}}>The Wiz</p><div className={rolling ? 'dice rolling' : 'dice'}>{faces[wVal]}</div></div>
             </div>
-            <h2 style={{ height: '40px', color: '#ccc' }}>{msg}</h2>
-            <button onClick={roll} disabled={rolling}>{rolling ? 'ROLLING...' : 'ROLL DICE'}</button>
-            <button className="reset-btn" onClick={() => {setPScore(0); setWScore(0); setMsg("Reset!");}}>RESET</button>
+            <h2 style={{ height: '50px', color: '#ccc', fontSize: '30px' }}>{msg}</h2>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+              <button onClick={roll} disabled={rolling}>{rolling ? 'ROLLING...' : 'ROLL DICE'}</button>
+              <button className="reset-btn" onClick={() => {setPScore(0); setWScore(0); setMsg("Reset!");}}>RESET</button>
+            </div>
           </div>
         );
       };
