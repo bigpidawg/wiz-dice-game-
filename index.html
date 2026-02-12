@@ -1,29 +1,47 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Wiz Dice Pro</title>
     <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
-    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
     <style>
-      body { background: #121212; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; color: white; font-family: system-ui; }
-      .dice { font-size: 150px; transition: transform 0.2s; }
+      body { 
+        background: #121212; 
+        display: flex; 
+        justify-content: center; 
+        align-items: center; 
+        min-height: 100vh; 
+        margin: 0; 
+        color: white; 
+        font-family: system-ui;
+        padding: 10px;
+        box-sizing: border-box;
+      }
+      .dice { font-size: 30vw; max-size: 150px; transition: transform 0.2s; }
+      @media (min-width: 600px) { .dice { font-size: 150px; } }
       .rolling { animation: shake 0.1s infinite; }
       @keyframes shake { 0% { transform: rotate(5deg); } 50% { transform: rotate(-5deg); } 100% { transform: rotate(5deg); } }
       button { padding: 20px 40px; font-size: 24px; background: #ffd700; border: none; border-radius: 15px; cursor: pointer; font-weight: bold; color: black; width: 100%; }
       button:disabled { background: #555; }
       .reset-btn { background: #444; color: white; margin-top: 15px; }
-      .score-box { padding: 15px 30px; background: #333; borderRadius: 10px; flex: 1; }
+      .score-box { padding: 15px 10px; background: #333; border-radius: 10px; flex: 1; }
       .container { 
-        textAlign: center; 
-        padding: 40px; 
+        text-align: center; 
+        padding: 20px; 
         background: #1a1a1a; 
-        borderRadius: 20px; 
+        border-radius: 20px; 
         border: 2px solid #ffd700; 
-        width: 90%; 
+        width: 100%;
         max-width: 600px;
         box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
       }
+      h1 { font-size: 8vw; }
+      @media (min-width: 600px) { h1 { font-size: 40px; } }
     </style>
   </head>
   <body>
