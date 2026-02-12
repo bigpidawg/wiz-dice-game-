@@ -15,52 +15,21 @@ const DiceGame = () => {
   const [history, setHistory] = useState([]);
   const [score, setScore] = useState({ player: 0, wiz: 0 });
 
-  const rollDice = () => {
-    setRolling(true);
-    setResult("The dice are casting...");
-    
-    // Sound effect simulation (visual)
-    const interval = setInterval(() => {
-      setPlayerRoll(Math.floor(Math.random() * 6) + 1);
-      setWizRoll(Math.floor(Math.random() * 6) + 1);
-    }, 100);
-
-    setTimeout(() => {
-      clearInterval(interval);
-      const p = Math.floor(Math.random() * 6) + 1;
-      const w = Math.floor(Math.random() * 6) + 1;
-      
-      setPlayerRoll(p);
-      setWizRoll(w);
-      setRolling(false);
-
-      let roundResult = "";
-      if (p > w) {
-        roundResult = "✨ VICTORY!";
-        setScore(s => ({ ...s, player: s.player + 1 }));
-      } else if (w > p) {
-        roundResult = "🔮 THE WIZ PREVAILS!";
-        setScore(s => ({ ...s, wiz: s.wiz + 1 }));
-      } else {
-        roundResult = "🤝 A STALEMATE!";
-      }
-      setResult(roundResult);
-      setHistory(h => [roundResult, ...h].slice(0, 5));
-    }, 1000);
-  };
-
   return (
     <div style={{ 
       fontFamily: "'Segoe UI', Roboto, Helvetica, Arial, sans-serif", 
       textAlign: 'center', 
       padding: '40px',
-      background: 'linear-gradient(145deg, #1e1e2e, #11111b)',
+      background: 'rgba(30, 30, 46, 0.7)',
+      backdropFilter: 'blur(10px)',
       color: '#cdd6f4',
       borderRadius: '30px',
       maxWidth: '500px',
       margin: '40px auto',
-      boxShadow: '0 20px 50px rgba(0,0,0,0.5)',
-      border: '1px solid #313244'
+      boxShadow: '0 20px 50px rgba(0,0,0,0.8)',
+      border: '1px solid rgba(255, 215, 0, 0.2)',
+      position: 'relative',
+      zIndex: 1
     }}>
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px' }}>
         <Sparkles color="#ffd700" />

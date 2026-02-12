@@ -8,7 +8,7 @@
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
     <style>
       body { 
-        background: #121212; 
+        background: #000; 
         display: flex; 
         justify-content: center; 
         align-items: center; 
@@ -18,8 +18,27 @@
         font-family: system-ui;
         padding: 10px;
         box-sizing: border-box;
+        overflow: hidden;
+        position: relative;
       }
-      .dice { font-size: 30vw; max-size: 150px; transition: transform 0.2s; }
+      /* Space Background */
+      body::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: transparent url('https://www.transparenttextures.com/patterns/stardust.png') repeat;
+        animation: star-move 100s linear infinite;
+        opacity: 0.5;
+        z-index: -1;
+      }
+      @keyframes star-move {
+        from { transform: translate(0, 0); }
+        to { transform: translate(100px, 100px); }
+      }
+      .dice { font-size: 30vw; max-size: 150px; transition: transform 0.2s; filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.5)); }
       @media (min-width: 600px) { .dice { font-size: 150px; } }
       .rolling { animation: shake 0.1s infinite; }
       @keyframes shake { 0% { transform: rotate(5deg); } 50% { transform: rotate(-5deg); } 100% { transform: rotate(5deg); } }
